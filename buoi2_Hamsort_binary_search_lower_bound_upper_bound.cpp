@@ -114,16 +114,20 @@
 
 /*
 thuật toán sắp xếp Quick sort.
-ý tưởng của thuật toán: chọn chốt.
-- pivot -->first, last, middle, random.
---> middle: chọn phần tử giữa (khả năng xử lí sẽ tốt hơn).
-sau khi chọn chốt r thì chạy hành động (phân hoạch, phân vùng, chia vùng), đảm bảo phần tử bên trái pivot nhỏ hơn nó và 
-bên phải, phải lớn hơn nó (sử dụng chia để trị) vì nó mảng bên trái lộn xộn chưa sắp xếp
-- chia mảng con từng bên trái và phải và gọi đệ quy để xử lý nó.
+ý tưởng:
+chia: 
++ chọn 1 phần tử làm phần tử chốt(pivot)
++ chia dãy thành 2 dãy con.
+  -dãy bên trái: những phần tử nhỏ hơn phần tử chốt.
+  -dãy bên phải: những phần tử lớn hơn phần tử chốt
+trị:
+  -đối với từng dãy con ta gọi đệ quy để sắp xếp từng dãy con đó.
 
+. tổng hợp dãy:
+[dãy bên trái, pivot, dãy bên phải].
 
-vd:  4 3 7 1 -5 10 5.
-
+cách chọn pivot: 
+- 
 */
 
 
