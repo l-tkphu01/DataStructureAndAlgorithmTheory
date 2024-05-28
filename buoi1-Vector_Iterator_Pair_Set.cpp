@@ -1,5 +1,12 @@
 //lí thuyết:
 /*cau truc du lieu va giai thuat
+nội dung học: 
+1. C++ STL.
+-set, map, string, vector, pair, auto,...
+-sort, comparator, binary search, linear search.
+-mảng cộng dồn, mảng hiệu, sàng số nguyên tố, hai con trỏ, cửa sổ trượt...
+
+
 #include <bits/stdc++.h>
 
 using namespace std;
