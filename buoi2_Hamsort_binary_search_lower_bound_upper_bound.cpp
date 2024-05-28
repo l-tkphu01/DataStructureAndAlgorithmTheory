@@ -112,4 +112,42 @@
 // } // nếu muốn sắp xếp theo một cách giảm dần ta chỉ cần sửa ">" => thành "<" là xong.
 
 
+/*
+thuật toán sắp xếp Quick sort.
+ý tưởng của thuật toán: chọn chốt.
+- pivot -->first, last, middle, random.
+--> middle: chọn phần tử giữa (khả năng xử lí sẽ tốt hơn).
+sau khi chọn chốt r thì chạy hành động (phân hoạch, phân vùng, chia vùng), đảm bảo phần tử bên trái pivot nhỏ hơn nó và 
+bên phải, phải lớn hơn nó (sử dụng chia để trị) vì nó mảng bên trái lộn xộn chưa sắp xếp
+- chia mảng con từng bên trái và phải và gọi đệ quy để xử lý nó.
+
+
+vd:  4 3 7 1 -5 10 5.
+
+*/
+
+
+
+
+
+// #include <bits/stdc++.h>
+// #include <algorithm>
+
+// //using ll = long long;
+// using namespace std;
+
+// int main(){
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     int n; cin >> n;
+//     int a[n]; //nếu kh cho khai báo a[n] thì cho khai báo theo a cố định a[100];
+//     for(int i = 0; i < n; i++){
+//         cin >> a[i];
+//     }
+//     sort(a, a + n); //O(NlogN) = intro sort : kết hợp 2 thằng quick sort + heap sort.
+//     for(int x : a){
+//         cout << x <<" ";
+//     }
+// }
+
 
