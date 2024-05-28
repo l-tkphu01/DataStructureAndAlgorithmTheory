@@ -6,6 +6,20 @@ nội dung học:
 -sort, comparator, binary search, linear search.
 -mảng cộng dồn, mảng hiệu, sàng số nguyên tố, hai con trỏ, cửa sổ trượt...
 
+2. Thuật toán
+-Sinh
+-quay lui, nhánh cận
+-tham lam
+-chia và trị
+-quy hoạch động
+-sắp xếp và tìm kiếm
+
+3. Cấu trúc dữ liệu
+-Đồ thị
+-Ngăn xếp hàng đợi
+-Cây nhị phân
+-Cây phân đoạn, fenwick 
+-Ngăn xếp, hàng đợi
 
 #include <bits/stdc++.h>
 
