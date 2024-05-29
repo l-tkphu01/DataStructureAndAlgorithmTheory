@@ -78,6 +78,56 @@ nhược điểm: it can't sắp xếp phần tử âm hoặc phần tử quá l
 chỉ áp dụng mảng từ 0 <= ai <= 10^7 còn các thuật toán khác áp dụng mảng nào cũng được.
 */
 
+// cách chia:
+
+void swap(int a[1000], int x, int y){
+  int temp = a[x];
+  a[x] = a[y];
+  a[y] = temp;
+}
+int partition(int a[1000], int l, int r){
+  int pivot = a[l]; //giá trị đầu tiên
+
+  int count = 0;
+  // dem so luong phan tu nam ben trai pivot
+  for(int i = l + 1; i <= r; i++){
+    if(a[i] <= pivot)
+        count++;
+  }
+  // lay vi tri cho gia tri pivot
+  int pivotIndex = l + count;
+
+  // hoan vi
+  swap(a, l, pivotIndex);
+  int i = l;
+  int j = r;
+  
+  while(i < pivotIndex && j > pivotIndex){
+    while(a[i] <= pivot){
+      i++;
+    }
+    while(a[j] > pivot){
+      j--;
+    }
+    if(i < pivotIndex && j > pivotIndex){
+      swap(a, i, j);
+    }
+  }
+  return pivotIndex;
+}
+void quicksort(int a[1000], int l, int r){
+  //nếu l > r kh còn phần tử nào để xử lí mà l < r thì ms xử lí đc.
+  if(l >= r){
+    return; //kh còn gì để sắp xếp.
+  }
+  //chia
+  int pivot = partition(a, l, r); //chia phân vùng nhỏ.
+  //trị:
+  //sắp xếp dãy bên trái
+  quicksort(a, l, pivot - 1);
+  //sắp xếp dãy bên phải
+  quicksort(a, pivot + 1, r);
+}
 int cnt[10000001];
 int main()
 {
@@ -86,7 +136,7 @@ int main()
     cin.tie(nullptr);
     int a[1000], n;
     cin >> n;
-    int m = INT_MIN;
+/*    int m = INT_MIN;
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
@@ -110,7 +160,7 @@ int main()
     }
     return 0;
 } // nếu muốn sắp xếp theo một cách giảm dần ta chỉ cần sửa ">" => thành "<" là xong.
-
+*/
 
 /*
 thuật toán sắp xếp Quick sort.
@@ -123,13 +173,32 @@ chia:
 trị:
   -đối với từng dãy con ta gọi đệ quy để sắp xếp từng dãy con đó.
 
-. tổng hợp dãy:
++ tổng hợp dãy:
 [dãy bên trái, pivot, dãy bên phải].
 
 cách chọn pivot: 
-- 
+- first
+- last
+- middle
+- random
+
+vd: 15 12 16 13 11 17.
+chọn 15.
+- nhỏ: 12 13 11 lấy 12 pivot  có nhỏ: 11 và lớn: 13 và gọi quick sort để sắp xếp gọp lại là 11 - 12 - 13.
+- lớn: 16 17 lấy 16: pivot có lớn: 17 sau đó sort
+(vs 2 dãy con trên chúng ta sẽ sort)
+- nếu giảm dần chỉ cần đổi dấu và làm ngược lại vấn đề đó lại.
 */
 
+for(int i = 0; i < n; i++){
+  cin >> a[i];
+}
+quicksort(a, 0, n - 1);
+for(int i = 0; i < n; i++){
+  cout << a[i] << endl;
+}
+return 0;
+}
 
 
 
