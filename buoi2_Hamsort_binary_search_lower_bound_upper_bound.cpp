@@ -115,52 +115,6 @@ int partition(int a[1000], int l, int r){
   }
   return pivotIndex;
 }
-void quicksort(int a[1000], int l, int r){
-  //nếu l > r kh còn phần tử nào để xử lí mà l < r thì ms xử lí đc.
-  if(l >= r){
-    return; //kh còn gì để sắp xếp.
-  }
-  //chia
-  int pivot = partition(a, l, r); //chia phân vùng nhỏ.
-  //trị:
-  //sắp xếp dãy bên trái
-  quicksort(a, l, pivot - 1);
-  //sắp xếp dãy bên phải
-  quicksort(a, pivot + 1, r);
-}
-int cnt[10000001];
-int main()
-{
-
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int a[1000], n;
-    cin >> n;
-/*    int m = INT_MIN;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> a[i];
-        cnt[a[i]]++;
-        m = max(m, a[i]); // để tìm phần tử lớn nhất trong mảng.
-    }
-    selectionsort(a, n);
-    bubblesort(a, n);
-    insertionsort(a, n);
-    for (int i = 0; i < n; i++)
-    {
-        cout << a[i] << " ";
-    }
-    for (int i = 0; i <= m; i++)
-    {
-        if(cnt[i] != 0){
-            for(int j = 0; j < cnt[i]; j++){
-                cout << i <<" ";
-            }
-        }
-    }
-    return 0;
-} // nếu muốn sắp xếp theo một cách giảm dần ta chỉ cần sửa ">" => thành "<" là xong.
-*/
 
 /*
 thuật toán sắp xếp Quick sort.
@@ -189,6 +143,64 @@ chọn 15.
 (vs 2 dãy con trên chúng ta sẽ sort)
 - nếu giảm dần chỉ cần đổi dấu và làm ngược lại vấn đề đó lại.
 */
+void quicksort(int a[1000], int l, int r){
+  //nếu l > r kh còn phần tử nào để xử lí mà l < r thì ms xử lí đc.
+  if(l >= r){
+    return; //kh còn gì để sắp xếp.
+  }
+  //chia
+  int pivot = partition(a, l, r); //chia phân vùng nhỏ.
+  //trị:
+  //sắp xếp dãy bên trái
+  quicksort(a, l, pivot - 1);
+  //sắp xếp dãy bên phải
+  quicksort(a, pivot + 1, r);
+}
+
+/*thuật toán sắp xếp vun đống (Heap sort).
+cây nhị phân: lá cuối cùng lúc nào cũng nghiên về bên trái thì mới điền đủ.
++ cấu trúc dữ liệu heap:
+- heap là một cây nhị phân hoàn chỉnh
+- nốt ở gốc lúc nào cũng lớn hơn gốc ở nốt con bên trái và bên phải, trường hợp nốt cha lớn hơn các nốt con của nó ta có
+Max_Heap, ngược lại nếu nốt cha nhỏ hơn 2 nốt con của nó ta có Min_Heap.
+
+- Heapify: thao tác heapify với nốt có chỉ số i trong mảng.
+*/
+
+
+int main()
+{
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int a[1000], n;
+    cin >> n;
+/*    int m = INT_MIN; //kiểu dữ liệu INT_MIN sử dụng với kiểu khai báo int. tương tự sử dụng LLONG_MAX, LLONG_MIN trong 
+kiểu khai báo long long.
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        cnt[a[i]]++;
+        m = max(m, a[i]); // để tìm phần tử lớn nhất trong mảng.
+    }
+    selectionsort(a, n);
+    bubblesort(a, n);
+    insertionsort(a, n);
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << " ";
+    }
+    for (int i = 0; i <= m; i++)
+    {
+        if(cnt[i] != 0){
+            for(int j = 0; j < cnt[i]; j++){
+                cout << i <<" ";
+            }
+        }
+    }
+    return 0;
+} // nếu muốn sắp xếp theo một cách giảm dần ta chỉ cần sửa ">" => thành "<" là xong.
+*/
 
 for(int i = 0; i < n; i++){
   cin >> a[i];
@@ -199,6 +211,7 @@ for(int i = 0; i < n; i++){
 }
 return 0;
 }
+
 
 
 
