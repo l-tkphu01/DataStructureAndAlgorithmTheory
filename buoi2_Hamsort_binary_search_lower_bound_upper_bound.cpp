@@ -165,32 +165,56 @@ cây nhị phân: lá cuối cùng lúc nào cũng nghiên về bên trái thì 
 Max_Heap, ngược lại nếu nốt cha nhỏ hơn 2 nốt con của nó ta có Min_Heap.
 
 - Heapify: thao tác heapify với nốt có chỉ số i trong mảng.
+- Để gọi hàm heapify có n phần tử ta sử dụng công thức: n/2 - 1 = ... sau đó heapify ngược lại từng phần tử và thực hiện
+theo thuật toán.
+- để sắp xếp các phần tử sau khi đã heapify lại với nhau ta hoán đổi vị trí (largest) với phần tử cuối cùng và đồng thời
+loại bỏ phần tử cuối tiếp tục heapify phần tử đầu dãy với phần tử cúi lớn nhất --> dãy đã đc sắp xếp.
 */
 
-void heapify(int arr[], int n, int i){
+void heapify(int a[], int n, int i){
   int largest = i;
-  int left = 2 * i + 1;
-  int right = 2 * i + 2;
+  int l = 2 * i + 1;
+  int r = 2 * i + 2;
 
-  if(left < n && arr[left] > arr[largest])
-    largest = left;
+  if(l < n && a[l] > a[largest])
+    largest = l;
 
-  if(right < n && arr[right] > arr[largest])
-    largest = right;
+  if(r < n && a[r] > a[largest])
+    largest = r;
 
   if(largest != i){ //chỉ số lớn nhất i khác i (max: ban đầu) cập nhật swap để đổi chỗ phần tử lớn hơn và nhỏ hơn.
-    swap(&arr[i], &arr[largest]);
-    heapify(arr, n, largest); //duy trì tính chất heap trong nhóm con để đệ quy duyệt tất cả các phần tử con bên dưới.
+    swap(a[i], a[largest]);
+    heapify(a, n, largest); //duy trì tính chất heap trong nhóm con để đệ quy duyệt tất cả các phần tử con bên dưới.
   }
 }
 
+  //thuật toán heapsort.
+  void heap(int a[], int n){
+    //xay dung max heap
+    for(int i = n/2 - 1; i >= 0; i--){
+      heapify(a, n, i);
+    }
+    //
+    for( int i = n - 1; i >= 0; i--){
+      swap(a[i], a[0]);
+      heapify(a, i, 0); //*lưu ý: nếu cập nhật heapify(a, n, 0) thì nó sẽ trở về ban đầu kh sắp xếp đâu.
+    }
+  }
+
+
 int main()
 {
-
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int a[1000], n;
-    cin >> n;
+  //để random số lớn hơn.
+  int n = 100;
+  int a[1000];
+  srand(time(NULL));
+  for(int i = 0; i < n; i++){
+    a[i] = rand() % 500;
+  }
+    //ios::sync_with_stdio(false);
+    //cin.tie(nullptr);
+    //int a[1000], n;
+    //cin >> n;
 /*    int m = INT_MIN; //kiểu dữ liệu INT_MIN sử dụng với kiểu khai báo int. tương tự sử dụng LLONG_MAX, LLONG_MIN trong 
 kiểu khai báo long long.
     for (int i = 0; i < n; i++)
@@ -218,12 +242,13 @@ kiểu khai báo long long.
 } // nếu muốn sắp xếp theo một cách giảm dần ta chỉ cần sửa ">" => thành "<" là xong.
 */
 
+//for(int i = 0; i < n; i++){
+  //cin >> a[i];
+//}
+//quicksort(a, 0, n - 1);
+heap(a, n);
 for(int i = 0; i < n; i++){
-  cin >> a[i];
-}
-quicksort(a, 0, n - 1);
-for(int i = 0; i < n; i++){
-  cout << a[i] << endl;
+  cout << a[i] <<" ";
 }
 return 0;
 }
