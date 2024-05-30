@@ -167,6 +167,22 @@ Max_Heap, ngược lại nếu nốt cha nhỏ hơn 2 nốt con của nó ta có
 - Heapify: thao tác heapify với nốt có chỉ số i trong mảng.
 */
 
+void heapify(int arr[], int n, int i){
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
+
+  if(left < n && arr[left] > arr[largest])
+    largest = left;
+
+  if(right < n && arr[right] > arr[largest])
+    largest = right;
+
+  if(largest != i){ //chỉ số lớn nhất i khác i (max: ban đầu) cập nhật swap để đổi chỗ phần tử lớn hơn và nhỏ hơn.
+    swap(&arr[i], &arr[largest]);
+    heapify(arr, n, largest); //duy trì tính chất heap trong nhóm con để đệ quy duyệt tất cả các phần tử con bên dưới.
+  }
+}
 
 int main()
 {
