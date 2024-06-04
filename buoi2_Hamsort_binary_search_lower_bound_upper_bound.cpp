@@ -255,26 +255,79 @@ return 0;
 
 
 
+#include <bits/stdc++.h>
+#include <algorithm>
+
+//using ll = long long;
+using namespace std;
+/*sort(v.begin(), v.end())
+++n: tăng n lên 1 và đồng thời gán m = n;
+n++: gán m = n trước và tăng n lên 1.
+sort kh áp dụng được vs set, map vì chúng đã có thứ tự ròi.
+using namespace std;
+
+nếu sort trên vector.
+sort(a.begin() + x, a.end() + y + 1);
+*/
+
+//hàm so sánh: comparator.
+int tong(int n){
+    int ans = 0;
+    while(n){
+        ans += n%10;
+        n/= 10;
+    }
+    return ans;
+}
+bool cmp(int a, int b){
+    if(tong(a) != tong(b)) //kh quan tâm đến tiêu chí chúng khác nhau.
+        return tong(a) < tong(b);// sẽ sắp xếp tổng tăng dần.
+    //nếu 2 chúng nó bằng nhau.
+    else
+        return a > b;
+    //trị tuyệt đối tăng dần return abs(a) < abs(b);
+    return 0;
+    //*lưu ý: nếu sắp xếp sinh viên theo thứ tự gpa, thì những sinh viên có gpa bằng nhau sẽ yêu cầu sắp theo tên.
+    //lớp gì đó.
+    //nếu các số có cùng tổng chữ số, thì sắp xếp cho số lớn hơn đứng trước
+}
+
+int main(){
+    //độ phức tạp của thuật toán kh thay đổi. o(logn)
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n; cin >> n;
+    int a[n]; //nếu kh cho khai báo a[n] thì cho khai báo theo a cố định a[100];
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    sort(a, a + n, cmp); // sắp xếp theo hàm yêu cầu.
+    //sort(a + 2, a + n - 2, greater<int>()); //O(NlogN) = intro sort : kết hợp 2 thằng quick sort + heap sort.
+    //nếu rơi vào trường hợp tệ nhất của quicksort thì tự chuyển qua heap sort
+    for(int x : a){
+        cout << x <<" ";
+    }
+    return 0;
+}
 
 
-// #include <bits/stdc++.h>
-// #include <algorithm>
+/*
+1. Tìm kiếm tuyến tính (Linear Search): độ phức tạp: 0(N).
+- Thuật toán tìm kiếm tuyến tính: 
++ Ý tưởng: Duyệt tuần tự các phần tử trong mảng và so sánh giá trị cần tìm với từng phần tử trong mảng.
 
-// //using ll = long long;
-// using namespace std;
++ Áp dụng cho một số bài toán sau: các bài toán như tìm kiếm vị trí đầu tiên, cuối cùng, đếm số lần xuất hiện của phần
+tử trong mảng đều là biến đổi của thuật toán tìm kiếm tuyến tính 
++ có thể áp dụng với mảng bất kì không cần sắp xếp gì hết.
+*/
 
-// int main(){
-//     ios::sync_with_stdio(false);
-//     cin.tie(nullptr);
-//     int n; cin >> n;
-//     int a[n]; //nếu kh cho khai báo a[n] thì cho khai báo theo a cố định a[100];
-//     for(int i = 0; i < n; i++){
-//         cin >> a[i];
-//     }
-//     sort(a, a + n); //O(NlogN) = intro sort : kết hợp 2 thằng quick sort + heap sort.
-//     for(int x : a){
-//         cout << x <<" ";
-//     }
-// }
+
+
+
+
+
+
+
+
 
 
