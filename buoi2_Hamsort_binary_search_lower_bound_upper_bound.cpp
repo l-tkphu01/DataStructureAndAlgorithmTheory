@@ -312,6 +312,15 @@ int main(){
 
 
 /*
+NỘI DUNG.
+/01. Tìm kiếm tuyến tính(Linear search).
+/02. Tìm kiếm nhị phân(Binary search).
+/03. Vị trí đầu tiên trong mảng tăng dần.
+/04. Vị trí cuối cùng trong mảng tăng dần.
+/05. Vị trí đầu tiên lớn hơn hoặc bằng X trong mảng tăng dần.
+/06. Vị trí cuối cùng lớn hơn hoặc bằng X trong mảng tăng dần.
+
+CÁCH DÙNG: LOWER_BOUND  /  UPPER_BOUND. 
 1. Tìm kiếm tuyến tính (Linear Search): độ phức tạp: 0(N).
 - Thuật toán tìm kiếm tuyến tính: 
 + Ý tưởng: Duyệt tuần tự các phần tử trong mảng và so sánh giá trị cần tìm với từng phần tử trong mảng.
@@ -321,7 +330,29 @@ tử trong mảng đều là biến đổi của thuật toán tìm kiếm tuy�
 + có thể áp dụng với mảng bất kì không cần sắp xếp gì hết.
 */
 
+//code:
 
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool linearSearch(int a[], int n, int x){
+  for(int i = 0; i < n; i++){
+    if(x == a[i]){
+      return true;
+    }
+  }
+  return false;
+}
+
+/*
+1. tìm kiếm nhị phân (binary Search): độ phức tạp O(logN).
+- Thuật toán tìm kiếm nhị phân:
++ ý tưởng: tìm kiếm trong đoạn từ [left, right] của mảng, ở mỗi bước thuật toán tìm vị trí middle ở giữa đoạn left, right
+nếu phần tử cần tìm kiếm bằng phần tử ở vị trí middle thì kết luận là tìm thấy, nếu kh ta có thể giảm một nữa đoạn tìm 
+kiếm xuống và tiếp tục tìm bên trái hay bên phải của middle.
+
+*/
 
 
 
