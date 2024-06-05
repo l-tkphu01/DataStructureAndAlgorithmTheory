@@ -382,6 +382,7 @@ bool bs(int a[], int n, int x){
   return false;
 }
 
+// hàm tìm kiếm đệ quy.
 bool binary_search(int a[], int l, int r, int x) {
     if (l > r)
         return false;
@@ -393,10 +394,18 @@ bool binary_search(int a[], int l, int r, int x) {
     else
         return binary_search(a, l, m - 1, x);
 }
-
+//binary_search(a + x, a + y, key) => a[x] => a[y - 1]
+//binary_search(a + 1, a + 4, key) => với a[x] là chỉ số bắt đầu và a[y - 1] là chỉ số kết thúc.
+//binary_search(v.begin(), v.end(), key)
+//binary_search(v.begin() + x, v.begin() + y, key) => v[x] => v[y - 1]
 int main(){
   int n, x; cin >> n >> x;
   int a[n];
+  //nếu sử dụng vector.
+  //vector <int> v(n);
+  //for(int i = 0; i < n; i++){
+  // cin >> v[i];
+  //}
   for(int i = 0; i < n; i++){
     cin >> a[i];
   }
@@ -405,6 +414,8 @@ int main(){
   //if(ls(a, n, x))
   //nếu bằng đệ quy.
   //if(binary_search(a, 0, n - 1, x))
+  // nếu sử dụng vector.
+  //if(binary_search(v.begin(), v.end(), x))
       cout << "FOUND!\n";
   else
       cout << "NOT FOUND\n";
