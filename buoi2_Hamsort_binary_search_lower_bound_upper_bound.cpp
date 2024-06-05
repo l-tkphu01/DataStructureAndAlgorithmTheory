@@ -331,12 +331,11 @@ tử trong mảng đều là biến đổi của thuật toán tìm kiếm tuy�
 */
 
 //code:
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
-bool linearSearch(int a[], int n, int x){
+bool ls(int a[], int n, int x){
   for(int i = 0; i < n; i++){
     if(x == a[i]){
       return true;
@@ -352,7 +351,70 @@ bool linearSearch(int a[], int n, int x){
 nếu phần tử cần tìm kiếm bằng phần tử ở vị trí middle thì kết luận là tìm thấy, nếu kh ta có thể giảm một nữa đoạn tìm 
 kiếm xuống và tiếp tục tìm bên trái hay bên phải của middle.
 
++ đây là một thuật toán cực kì hiệu quả và quan trọng, khi học lập trình bạn cần nắm rõ thuật toán này.
+
+*lưu ý: mảng phải được sắp xếp giảm dần hoặc tăng dần thì mới sử dụng được.
+
+- giải thích thuật toán:
+mid = (r - l)/2 =.... và + thêm một đơn vị. (đặt số ban đầu là 0).
+
 */
+
+
+//code:
+
+bool bs(int a[], int n, int x){
+  int l = 0, r = n - 1;
+  while(l <= r){
+    int mid = (l + r)/2;
+    if(a[mid] == x){
+      return true;
+    }
+    else if(a[mid] < x){
+      // tìm kiếm ở bên trái.
+      l = mid + 1;
+    }
+    else{
+      //tìm kiếm ở bên phải.
+      r = mid - 1;
+    }
+  }
+  return false;
+}
+
+bool binary_search(int a[], int l, int r, int x) {
+    if (l > r)
+        return false;
+    int m = (l + r) / 2;
+    if (a[m] == x)
+        return true;
+    else if (a[m] < x)
+        return binary_search(a, m + 1, r, x);//nhớ phải có tham số trong hàm đệ quy.
+    else
+        return binary_search(a, l, m - 1, x);
+}
+
+int main(){
+  int n, x; cin >> n >> x;
+  int a[n];
+  for(int i = 0; i < n; i++){
+    cin >> a[i];
+  }
+  //nếu mảng chưa được sắp xếp thì sử dụng linear_search.
+  if(bs(a, n, x))
+  //if(ls(a, n, x))
+  //nếu bằng đệ quy.
+  //if(binary_search(a, 0, n - 1, x))
+      cout << "FOUND!\n";
+  else
+      cout << "NOT FOUND\n";
+  return 0;
+}
+/*
+3. vị trí đầu tiên của phần tử X trong mảng đã được sắp xếp.
+*/
+
+//code:
 
 
 
