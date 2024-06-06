@@ -398,6 +398,13 @@ bool binary_search(int a[], int l, int r, int x) {
 //binary_search(a + 1, a + 4, key) => với a[x] là chỉ số bắt đầu và a[y - 1] là chỉ số kết thúc.
 //binary_search(v.begin(), v.end(), key)
 //binary_search(v.begin() + x, v.begin() + y, key) => v[x] => v[y - 1]
+
+
+//tìm vị trí đầu tiên của 1 phần tử > x trong một mảng đã sắp xếp.
+//tìm vị trí đầu tiên của 1 phần tử < x trong mảng đã sắp xếp.
+//tìm vị trí cuối cùng của 1 phần tử > x trong mảng đã sắp xếp.
+//tìm vị trí cuối cùng của 1 phần tử < x trong mảng đã sắp xếp.
+
 int main(){
   int n, x; cin >> n >> x;
   int a[n];
@@ -423,9 +430,61 @@ int main(){
 }
 /*
 3. vị trí đầu tiên của phần tử X trong mảng đã được sắp xếp.
+vd: 10 3
+1 2 2 3 3 3 3 7 8 9 
+*nếu duyệt từ đầu tới cuối gặp 3 thì đó là tìm kiếm tuyến tính.
 */
 
-//code:
+//hàm tìm vị trí đầu tiên.
+
+int first_pos(int a[], int n, int x){
+  int res = -1; 
+  int l, r = 0;
+  while(l <= r){
+    int m = (l + r) / 2;
+    if(a[m] == x){
+      res = m;
+      //tìm thêm ở bên trái xem còn không ?
+      r = m - 1;
+    }
+    else if(a[m] < x){
+      l = m + 1;
+    }
+    else r = m - 1;
+  }
+  return res;
+}
+//tìm vị trí cuối cùng của mảng 
+int last_pos(int a[], int n, int x){
+  int res = -1;
+  int l, r = 0;
+  while(l <= r){
+    int m = (l + r) / 2;
+    if(a[m] == x){
+      res = m;
+      //tìm thêm ở bên phải.
+      l = m + 1;
+    }
+    else if(a[m] < x) l = m + 1;
+    else r = m - 1;
+  }
+  return res;
+}
+
+int main(){
+  int n, x; cin >> n >> x;
+  int a[n];
+  for(int &x : a) cin >> x;
+  //cout << first_pos(a, n, x) <<' '<< last_pos(a, n, x) << endl;
+  int l = first_pos(a, n, x);
+  int r = last_pos(a, n, x);
+  if(l != -1){
+    cout << r - l + 1 <<' ';
+  }
+  else cout << "0\n";
+  return 0;
+}
+
 
 
 
