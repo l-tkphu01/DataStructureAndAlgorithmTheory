@@ -492,12 +492,30 @@ int main(){
 }
 
 /*
-/05. Vị trí đầu tiên lớn hơn hoặc bằng X trong mảng tăng dần.
+7. Hàm LOWER_BOUND:
+- Cú Pháp: lower_bound(first_iter, last_iter, X);
+- Áp dụng: mảng, vector, set, map.
+- Điều kiện áp dụng: mảng,.... đều được sắp xếp.
+- Tương tự như hàm sort, lower_bound cũng trả về iter chứ kh trả về giá trị.
+- Nó trả về vị trí đầu tiên >= X, nếu trong mảng vector bạn tìm kiếm kh có phần tử nào >= X(tất cả đều nhỏ hơn X) thì 
+lower_bound trả về last_iter.
+
+
+
+____Phải có kiến thức về con trỏ và iterator____
 */
 
-
-
-
+int main(){
+  int n; cin >> n;
+  vector<int> a(n);
+  for(int i = 0; i < n; i++){
+    cin >> a[i];
+  }
+  //auto it = lower_bound(a, a + n, 6); // in ra phần tử đầu tiên >= 3; it = a + 2
+  auto it = lower_bound(a.begin(), a.end(), 4);
+  cout << (it - a.begin()) << endl;
+  auto it = upper_bound(a.begin(), a.end(), 4);
+}
 
 
 
