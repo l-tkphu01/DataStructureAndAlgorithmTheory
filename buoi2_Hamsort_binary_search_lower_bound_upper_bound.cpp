@@ -321,7 +321,7 @@ NỘI DUNG.
 /06. Vị trí cuối cùng lớn hơn hoặc bằng X trong mảng tăng dần.
 
 CÁCH DÙNG: LOWER_BOUND  /  UPPER_BOUND. 
-1. Tìm kiếm tuyến tính (Linear Search): độ phức tạp: 0(N).
+/01. Tìm kiếm tuyến tính (Linear Search): độ phức tạp: 0(N).
 - Thuật toán tìm kiếm tuyến tính: 
 + Ý tưởng: Duyệt tuần tự các phần tử trong mảng và so sánh giá trị cần tìm với từng phần tử trong mảng.
 
@@ -345,7 +345,7 @@ bool ls(int a[], int n, int x){
 }
 
 /*
-1. tìm kiếm nhị phân (binary Search): độ phức tạp O(logN).
+/02. tìm kiếm nhị phân (binary Search): độ phức tạp O(logN).
 - Thuật toán tìm kiếm nhị phân:
 + ý tưởng: tìm kiếm trong đoạn từ [left, right] của mảng, ở mỗi bước thuật toán tìm vị trí middle ở giữa đoạn left, right
 nếu phần tử cần tìm kiếm bằng phần tử ở vị trí middle thì kết luận là tìm thấy, nếu kh ta có thể giảm một nữa đoạn tìm 
@@ -435,7 +435,9 @@ vd: 10 3
 *nếu duyệt từ đầu tới cuối gặp 3 thì đó là tìm kiếm tuyến tính.
 */
 
-//hàm tìm vị trí đầu tiên.
+/*
+/03. Vị trí đầu tiên của mảng tăng dần.
+*/
 
 int first_pos(int a[], int n, int x){
   int res = -1; 
@@ -454,7 +456,9 @@ int first_pos(int a[], int n, int x){
   }
   return res;
 }
-//tìm vị trí cuối cùng của mảng 
+/*
+/04. Vị trí cuối cùng của mảng tăng dần.
+*/
 int last_pos(int a[], int n, int x){
   int res = -1;
   int l, r = 0;
@@ -478,12 +482,20 @@ int main(){
   //cout << first_pos(a, n, x) <<' '<< last_pos(a, n, x) << endl;
   int l = first_pos(a, n, x);
   int r = last_pos(a, n, x);
+
+  //tìm khoảng cách của phần tử đầu tiên và phần tử cuối cùng trong mảng.
   if(l != -1){
     cout << r - l + 1 <<' ';
   }
   else cout << "0\n";
   return 0;
 }
+
+/*
+/05. Vị trí đầu tiên lớn hơn hoặc bằng X trong mảng tăng dần.
+*/
+
+
 
 
 
