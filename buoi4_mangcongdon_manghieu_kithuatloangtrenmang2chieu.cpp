@@ -237,12 +237,71 @@ int main(){
 */
 
 /*
-cách 2: dùng mảng hiệu: cho phép sử dụng để giải nhiều bài tập khó hơn
+cách 2: dùng mảng hiệu(DA) cho phép sử dụng để giải nhiều bài tập khó hơn
+
+Đặt vấn đề: Cho mảng A[] có N phần tử, có Q thao tác mỗi thao tác sẽ tăng
+các phần tử trong đoạn từ chỉ số L tới R của mảng A[] lên K đơn vị. Hãy 
+xác định mảng A[] sau Q thao tác.
+
+cách tiếp cận: đó là đối với mỗi truy vấn bạn sẽ duyệt từ L tới R và thêm 
+K vào các phần tử trong mảng A[], như vậy với mỗi truy vấn bạn sẽ mất O(N).
+
+Cách tối ưu hơn:
+vd:                                                    A = 3 8 1 4 7 2 9 
+sử dụng công thức sau:D[0] = A[0];
+                      D[i] = A[i] - A[i - 1]:          D = 3 5-7 3 3 -5 7 (mảng hiệu). 
+Khi tính mảng cộng dồn của mảng D thì sẽ ra A ban đầu: F = 3 8 1 4 7  2 9 (mảng cộng dồn).
+ví dụ tính mảng cộng dồn F[4] = D0 + D1 + D2 + D3 + D4.
+                              = A0 + A1 - A0 + A2 - A1 + A4 - A3. (c/m A = F)
+
+
+A = 3 8 1 4 7 2 9 
+D = 3 5-7 3 3 -5 7
+    3 5-4 3 3 -8 7 (khi cộng thêm k) dùng câu lệnh D[l] += k: mỗi thằng từ vị trí l đến cuối đều + k đơn vị.
+mcd:3 8 4 7 10 2 9                                                   D[r + 1] -= k; giới hạn vị trí [l, r].
+*luôn cập nhật thông qua mảng hiệu.
+- muốn giới hạn khoảng [l, r] thì dùng D[r + 1] -= k; sẽ bù trừ cho D[l] += k: không muốn cuối dãy bị ảnh hưởng.
 */
 
+int main(){
+    int n, q; cin >> n >> q;
+    vector<long long> a(n);
+    for( int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    long long D[n + 5]; // để đảm bảo D[r + 1]; hợp lệ
+    for(int i = 0; i < n; i++){
+        if(i == 0) D[0] = a[0];
+        else
+        D[i] = a[i] - a[i - 1];
+    }
+    while(q--){
+        int l, r, k;
+        cin >> l >> r >> k;
+        D[l] += k;
+        D[r + 1] -= k;
+        }
+        long long sum = 0;
+        for(int i = 0; i < n; i++){
+            sum += D[i];
+            cout << sum <<' ';
+        }
+    return 0;
+}
 
+/*MẢNG 2 CHIỀU: 
+KĨ THUẬT DUYỆT CÁC Ô LIỀN KỀ.
+*/
 
+/*
+bài tập: cho ma trận A các số nguyên có N hàng và M cột. điểm được coi là cực đại trong ma trận nếu nó 
+lớn hơn tất các số ở các số ô xung quanh mà chung đỉnh với nó. Hãy đếm xem trong ma trận có bao nhiêu điểm cực đại.
 
-
+cách làm: phải duyệt qua từng ô 1 nếu muốn nhanh thì dùng kĩ thuật sau.
+5/ kĩ thuật duyệt các ô liền kề: 
+ta có mảng sau:  i - 1, j - 1| i - 1, j| i - 1, j + 1|
+                 i ,  j - 1  | i,  j   | i, j + 1    |
+                 i + 1, j - 1| i + 1, j| i + 1, j + 1|
+*/
 
 
