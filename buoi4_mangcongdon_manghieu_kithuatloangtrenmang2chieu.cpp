@@ -104,13 +104,14 @@ return 0;
 
 /*
 - CÁCH TÍNH PREFIX SUM TRONG MẢNG 2 CHIỀU NHANH NHƯ SAU:
-sử dụng công thức: prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + arr[i][j];
+sử dụng công thức: prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + arr[i][j];(1)
 
 - khi biết hàng 1 và hàng 2 cần truy vấn ròi thì ta có thể sử dụng công thức để tính luôn.
-arr[i][j] = prefix[A][B] - prefix[a - 1][B] - prefix[A][b - 1] + prefix[a - 1][b - 1].o(1).
+arr[i][j] = prefix[A][B] - prefix[a - 1][B] - prefix[A][b - 1] + prefix[a - 1][b - 1].o(1) (2)
+lưu ý: phải tính prefix[i][j] <=> prefix[A][B].
 */
 
-int main(){
+/*int main(){
     int n, m; cin >> n >> m;
     int a[n + 1][m + 1];//đảm bảo chạy từ 1 và loại bỏ hàng 0.
     for( int i = 1; i <= n; i++){
@@ -132,6 +133,113 @@ int main(){
     }
     return 0;
 }
+*/
+
+/*
+bài tập: 
+- Tèo hiện tại đã bỏ làm lập trình viên và về trồng rau nuôi cá, anh ta có một mảng vườn hình chữ nhật có kích
+thước NxM. ngta chia vườn của mình thành NxM ô vuông và trồng vào đó 1 cây cà rốt, tới vụ thu hoạch có những cây cà rốt 
+bị chết và có những cây cà rốt có củ, anh ta muốn biết với mỗi hình chữ nhật bắt đầu từ hàng x1 tới x2 và từ cột y1 tới y2
+thì số cà rốt thu hoạch được là bao nhiêu.
+
+- Biết rằng mảnh vườn đc mô tả là một ma trận nhị phân, 0 tương ứng với cây cà rốt chất và 1 tương ứng với cây cà rốt
+có củ. 
+*/
+
+/*
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n, m; cin >> n >> m;
+    int a[n + 1][m + 1];
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++) cin >> a[i][j];
+    }
+    int pre[n + 1][m + 1] = {0};
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++){
+            pre[i][j] = pre[i - 1][j] + pre[i][j - 1] - pre[i - 1][j - 1] + a[i][j];
+        }
+    }
+    int q; cin >> q;
+    while(q--){
+        int x1, x2, y1, y2;
+        cin >> x1 >> x2 >> y1 >> y2;
+        cout << pre[x2][y2] - pre[x1 - 1][y2] - pre[x2][y1 - 1] + pre[x1 - 1][y1 - 1] << endl;
+    }
+    return 0;
+}*/
+
+//cách 2: có thể khai báo biến toàn cục.
+
+/*int a[1005][1005];
+int pre[1005][1005];
+int n, m;
+
+void nhap(){
+    cin >> n >> m;
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++) cin >> a[i][j];
+    }
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++){
+            pre[i][j] = pre[i - 1][j] + pre[i][j - 1] - pre[i - 1][j - 1] + a[i][j];
+        }
+    }
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    nhap();
+    //nhap truy vấn;
+    int q; cin >> q;
+    while(q--){
+        int x1, x2, y1, y2;
+        cin >> x1 >> x2 >> y1 >> y2;
+        cout << pre[x2][y2] - pre[x1 - 1][y2] - pre[x2][y1 - 1] + pre[x1 - 1][y1 - 1] << endl;
+    }
+    return 0;
+}
+*/
+
+/*
+MẢNG HIỆU (DIFFERENCE ARRAY).
+- Cho mảng A[] có N phần tử, có Q thao tác, mỗi thao tác sẽ tăng các phần tử trong đoạn L --> R của mảng A[] lên k đơn vị
+. Hãy xác định mảng A[] sau Q thao tác.
+- Cách tiếp cận đơn giản cho vấn đề này là đối với (mỗi truy vấn bạn sẽ duyệt từ L tới R và thêm K vào các phần tử trong 
+mảng A[], như vậy với mỗi truy vấn bạn sẽ mất o(N). 
+vd: 3 8 1 4 7 2
+*điều kiện: tăng k từ l --> r vd: 1 3 3 (tăng từ 1 -> 3 lên 3 đv)
+*/
+
+/*
+cách 1: truy vấn 
+int main(){
+    int n, q; cin >> n >> q; //q là số truy vấn.
+    vector<long long> a(n);
+    int sum = 0;
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    while(q--){
+        int l, r, k;
+        cin >> l >> r >> k;
+        for(int i = l; i <= r; i++){
+            a[i] += k;
+        }
+    }
+    for(long x : a){
+        cout << x <<' ';
+    }
+    return 0;
+}
+*/
+
+/*
+cách 2: dùng mảng hiệu: cho phép sử dụng để giải nhiều bài tập khó hơn
+*/
+
 
 
 
