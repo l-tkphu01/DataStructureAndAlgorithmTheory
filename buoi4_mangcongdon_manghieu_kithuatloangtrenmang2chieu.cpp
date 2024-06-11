@@ -263,6 +263,7 @@ mcd:3 8 4 7 10 2 9                                                   D[r + 1] -=
 - muốn giới hạn khoảng [l, r] thì dùng D[r + 1] -= k; sẽ bù trừ cho D[l] += k: không muốn cuối dãy bị ảnh hưởng.
 */
 
+/*
 int main(){
     int n, q; cin >> n >> q;
     vector<long long> a(n);
@@ -288,6 +289,7 @@ int main(){
         }
     return 0;
 }
+*/
 
 /*MẢNG 2 CHIỀU: 
 KĨ THUẬT DUYỆT CÁC Ô LIỀN KỀ.
@@ -302,6 +304,47 @@ cách làm: phải duyệt qua từng ô 1 nếu muốn nhanh thì dùng kĩ thu
 ta có mảng sau:  i - 1, j - 1| i - 1, j| i - 1, j + 1|
                  i ,  j - 1  | i,  j   | i, j + 1    |
                  i + 1, j - 1| i + 1, j| i + 1, j + 1|
+
+- để duyệt qua 8 ô còn lại sau ô i, j: xét sự thay đổi của i, j
+(-1, -1)
+(-1, 0)
+(-1, 1)
+(0, -1)
+(0, 1)
+(1, -1)
+(1, 0)
+(1, 1) - có 8 lượng di chuyển với 8 ô xung quang, dùng vong for kh nên dùng if (else) vì dễ trùng và thiếu.
 */
 
+int dx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+int dy[8] = {-1, 0, 1, -1, 1, -1, 0, 1}; //mỗi cặp sẽ tương ứng với 1 lượng di chuyển.
 
+int main(){
+int n, m; cin >> n >> m;
+int a[n][m];
+for( int i = 0; i < n; i++){
+    for( int j = 0; j < m; j++){
+        cin >> a[i][j];
+    }
+}
+int dem = 0;
+for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+    //check (i, j) xem có phải là nó lớn hơn hơn các số có chung đỉnh với nó hay không.
+        bool check = true;
+        //để duyệt qua 8 ô xung quanh.
+        for(int k = 0; k < 8; k++){ // dùng chỉ số k để duyệt qua 2 mảng dx, dy này.
+            int i1 = i + dx[k], j1 = j + dy[k]; // là 1 trong 8 ô xung quanh chung đỉnh với ô i, j.
+            //check xem có nhỏ hơn ô i, j không.
+            if(i1 >= 0 && i1 < n && j1 >= 0 && j1 < m){
+                if(a[i1][j1] >= a[i][j]){
+                    check = false;
+                    break;
+                }
+            }
+        }
+        if(check) ++dem;
+    }
+}
+cout << dem << endl;
+}
