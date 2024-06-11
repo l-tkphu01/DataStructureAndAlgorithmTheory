@@ -262,7 +262,6 @@ mcd:3 8 4 7 10 2 9                                                   D[r + 1] -=
 *luôn cập nhật thông qua mảng hiệu.
 - muốn giới hạn khoảng [l, r] thì dùng D[r + 1] -= k; sẽ bù trừ cho D[l] += k: không muốn cuối dãy bị ảnh hưởng.
 */
-
 /*
 int main(){
     int n, q; cin >> n >> q;
@@ -291,6 +290,7 @@ int main(){
 }
 */
 
+
 /*MẢNG 2 CHIỀU: 
 KĨ THUẬT DUYỆT CÁC Ô LIỀN KỀ.
 */
@@ -316,6 +316,7 @@ ta có mảng sau:  i - 1, j - 1| i - 1, j| i - 1, j + 1|
 (1, 1) - có 8 lượng di chuyển với 8 ô xung quang, dùng vong for kh nên dùng if (else) vì dễ trùng và thiếu.
 */
 
+/*
 int dx[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
 int dy[8] = {-1, 0, 1, -1, 1, -1, 0, 1}; //mỗi cặp sẽ tương ứng với 1 lượng di chuyển.
 
@@ -348,3 +349,75 @@ for(int i = 0; i < n; i++){
 }
 cout << dem << endl;
 }
+*/
+
+/* nếu yêu cầu duyệt qua 4 ô chung cạnh thì lượng di chuyển là 4 ô.
+
+int dx[4] = {-1, 0, 0, 1};
+int dy[4] = {0, -1, 1, 0};
+- Để thoát tất cả câu lệnh vòng lặp và hàm main thì dùng "return 0;"
+- trường hợp không muốn thoát hẳn (chỉ thoát tất cả các vòng lặp lồng nhau) thì sử dụng vòng lặp "goto": kh khuyến kích
+sử dụng.
+*/
+
+/*
+Để duyệt qua 8 ô xung quanh nước đi của quân mã.
+*/
+
+/*
+bài 16: count island 1
+cho ma trận nhị phân gồm N hàng và M cột chỉ bao gồm các số 0 và 1. Hãy đếm số lượng miền các số 1 trong ma trận, các  ô
+số 1 được coi là cùng miền nếu các số có chung cạnh.
+*/
+
+int dx[4] = {-1, 0, 0, 1};
+int dy[4] = {0, -1, 1, 0};
+
+int a[1005][1005];
+int n, m;
+
+void nhap(){
+    cin >> n >> m;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >> a[i][j];
+        }
+    }
+}
+
+void loang(int i, int j){
+    cout << "duyet qua o " << i << " " << j << endl;
+    a[i][j] = 0; //mỗi lần loang đến ô i, j để cho ngta biết được tôi đã đi qua ô i, j đó.
+    // từ ô i, j này chúng ta sẽ duyệt qua 4 ô chung cạnh của nó và gọi đệ quy để nhảy vào đó.
+    for(int k = 0; k < 4; k++){
+        int i1 = i + dx[k], j1 = j + dy[k]; // là 1 trong 8 ô xung quanh chung đỉnh với ô i, j.
+            //check xem có nhỏ hơn ô i, j không.
+            if(i1 >= 0 && i1 < n && j1 >= 0 && j1 < m){
+                if(a[i1][j1]){ //nếu = 1 thì chung cạnh ròi loang tiếp. 
+                    loang(i1, j1);
+                }
+            }
+    }
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    nhap();
+    int dem = 0;
+    for( int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(a[i][j] == 1){
+                dem++;
+                loang(i, j);
+            }
+        }
+    }
+    cout << dem <<' ';
+    return 0;
+}
+/*
+- các ô được gọi là chung miền nếu chúng liên thông và kết nối với nhau qua trái, phải, lên, xuống, kh có trường hợp 
+đường chéo.
+- các ô được gọi là cùng miền, nếu mà chúng nó chung cạnh với nhau.
+*/
