@@ -72,6 +72,7 @@ int cuaso_truot(vector<int>& arr, int k) {
     int l = 0;
     int ans = 0;
     int sum = 0;
+	int res = 0;
     for (int r = 0; r < arr.size(); r++) {
         sum += arr[r];
         while (sum > k){
@@ -212,9 +213,66 @@ int main(){
 	return 0;
 }
 */
-
 /*
-bai tap: cua so truot (28 tech).
+int cuaso_truot(vector<int>& arr){
+	int n = arr.size();
+	for(int i = 0; i < n; i++){
+		for(int j = i; j < n; j++){
+			for(int k = i; k < j; k++){
+				cout << arr[k] <<" ";
+			}
+			cout << endl;
+		}
+	}
+}
 
+int main(){
+	int n; cin >> n;
+	vector<int> arr(n);
+	for(int i = 0; i < n; i++){
+		cin >> arr[i];
+	}	
+	int result = cuaso_truot(arr);
+	cout << result <<' ';
+	return 0;
+}
+*/
+/*
+Sliding Windown.
+cho mang cac so nguyen. hãy tìm dãy con k phan tu lien tiep co tong cac phan tu lon nhat.
+
+vd: n = 7; k = 3
+      | la vi tri (n - k)
+4 3 1 2 8 6 de tinh cua so tu 3 1 2 dung cong thuc: 8 - 4 + 2.
+*/
+/*
+int main(){
+	int t; cin >> t;
+	while(t--){
+		int n, k; cin >> n >> k;
+		int a[1001];
+		for(int i = 0; i < n; i++){
+			cin >> a[i];
+		}
+		long long sum = 0; //khai bao kieu long long de tranh tran so.
+		for(int i = 0; i < k; i++){
+			sum += a[i];
+		}
+		long long res = sum, idx = 0; //idx: la chi so bat dau day con co tong lon nhat hien tai.
+		for(int i = k; i < n; i++){ // i la cua so ket thuc cua cua so
+			sum = sum - a[i - k] + a[i];
+			if(sum > res){
+				res = sum;
+				idx = i - k + 1; // chi so bat dau cua cua so.
+			}
+		}
+		cout << res << endl;
+		for(int j = 0; j < k; j++){
+			cout << a[idx + j] <<" ";
+		}
+		cout << endl;
+	}
+}
+*/
 
 	
