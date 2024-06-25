@@ -40,7 +40,7 @@ K=3, X[] = {2, 3, 4} thi tap con tiep theo cua X[] la {2, 3, 5}.
 */
 
 
-int n, k, a[1005];
+//int n, k, a[1005];
 /*
 //doi voi to hop chap k cua n thi ta bat dau tu bit cuoi cung truoc.
 void next(){
@@ -83,6 +83,7 @@ hoan vi tiep theo cua X[]. Vi du N=5, X[] = {1, 2, 3, 4, 5} thi hoan vi tiep the
 X[] la {1, 2, 3, 5, 4}.
 */
 
+/*
 void next(){
 	int i = n - 1;
 	while( i >= 1&& a[i] > a[i + 1]){
@@ -112,6 +113,211 @@ int main(){
 		cin >> n;
 		for(int i = 1; i <= n; i++) cin >> a[i];
 		next();
+	}
+	return 0;
+}
+*/
+
+/*
+bai tap: lập trình chuyển số thập phân sang số nhị phân.
+
+dùng hàm đệ quy để giải bài tập:
+
+giới thiệu sơ lượt:  vòng lặp khác với vòng lặp while thì câu lệnh này sẽ thực thi trong câu lệnh stament ít nhất 1 lần
+sau đó mới thực hiện lên câu lệnh while.
+do...(while).
+
+do{
+		stament
+}while (expresion); nếu điều kiện này đúng thì nó sẽ check câu lệnh <stament>, nếu câu lệnh này sai thì nó sẽ kh thực 
+thi câu lệnh stament nữa.
+
+*lưu ý: vòng lặp while sẽ kiểm tra điều kiện trước tiên sau đó ms thực thi khối lệnh, còn do...while sẽ thực thi 'do' 
+đầu tiên sau đó mới ktra 'while'.
+
+Sự hoạt động của vòng lặp:
+Bước 1: thực hiện khối lệnh sau do.
+Bước 2: kiểm tra giá trị của biểu thức <biểu thức> sau while, nếu có giá trị 'đúng' (khác 0) thì lặp lại bước 1, nếu 
+sai or (=0) thì kết thúc vòng lặp.
+
+ví dụ:
+Viết chương trình hiện menu sau đây lên màn hình:
+	- nhập số 0 để thoát.
+	- nhập bất kì kí tự khác để tiếp tục.
+*/
+
+// int main(){
+// 	int c;
+// 	do{
+// 		cout <<"--------"<<endl;
+// 		cout << "MENU" << endl;
+// 		cout << "nhap vao ki tu 0 de thoat" <<endl;
+// 		cout << "nhap vao so bat ki != 0 de tiep tuc"<<endl;
+// 		cin >> c;
+// 	// xét kí tự thì mình phải để nó vào ngoặc đơn.
+// 	} while (c != 0);
+// }
+
+//ví dụ câu lệnh yêu câu nhập 0 < n < 100.
+
+/*
+int main() {
+    int n;
+    cout << "nhap gia tri cua n";
+	cin >> n;
+    while (n <= 0 || n >= 100) {
+        cout << "gia tri cua n kh nam tu 1 --> 99. vui long nhap lai: ";
+        cin >> n;
+    }
+
+    cout << "Gia tri cua n nam trong khoang tu 1 den 99" << endl;
+
+    return 0;
+}
+*/
+/*
+bai tap: lập trình chuyển số thập phân sang số nhị phân.
+
+dùng hàm đệ quy để giải bài tập:
+*/
+
+/*
+void printnhiphan(unsigned long long x){
+	//trong ham de quy ta phai xác định được khi nào dừng lại và khi nào chúng ta tiếp tục.
+	if(x == 0) return;
+	else{
+		int r = (x%2); // de lay phan du.
+		//sau do goi ham printnhiphan.
+		printnhiphan(x/2); //thuc hiên phep chia nguyen de lay so nguyen, gọi lại hàm printnhiphan de lap lai cach tinh tren
+		cout << r;
+	}
+}
+
+int main(){
+	unsigned long long n;
+	do{
+		cout <<" nhap vao so thap phan de chuyen sang nhi phan: ";
+		cin >> n;
+	} while( n < 0);
+	// khi điều kiện while (n < 0) kh đúng thì nó sẽ thực hiện nhiphan(n);
+	printnhiphan(n); 
+}
+*/
+// một cách code khác.
+
+/*
+long long nhiphan(int n){
+		long long binarynumber = 0;
+		int p = 0;
+		while(n > 0){
+			binarynumber += (n % 16) * pow(10, p);
+			++p;
+			n /= 16;
+		}
+		return binarynumber;
+	}
+
+int main(){
+	int n; cin >> n;
+	cout << nhiphan(n);
+}
+*/
+
+//tương tự chuyển từ thập phân sang thập lục phân.
+
+//chuyen nhi phan sang thap phan.
+/*
+int thapphan(long long binarynumber){
+	int p = 0;
+	int decNumber = 0;
+	while(binarynumber > 0){
+		decNumber += (binarynumber % 10)*  pow(2, p);
+		++p;
+		binarynumber /= 10;
+	}
+	return decNumber;
+}
+
+int main(){
+	long long binarynumber;
+	cin >> binarynumber;
+	cout << thapphan(binarynumber);
+	return 0;
+} 
+// tưởng tự như cách chuyển từ thập phân sang thập lục phân.
+*/
+
+//bai tap chuyen tu thap luc phan --> nhi phan.(cơ số 16 --> cơ số 2).
+
+/*
+int main(){
+	//int kh có các số ABCDEF đâu.
+	string n; cin >> n;  
+	string check[16];
+	check[0] ="0000";
+	check[1] ="0001";
+	check[2] ="0010";
+	check[3] ="0011";
+	check[4] ="0100";
+	check[5] ="0101";
+	check[6] ="0110";
+	check[7] ="0111";
+	check[8] ="1000";
+	check[9] ="1001";
+	check[10] ="1010";
+	check[11] ="1011";
+	check[12] ="1100";
+	check[13] ="1101";
+	check[14] ="1110";
+	check[15] ="1111";
+	for(int i = 0; i < n.length(); i++)
+	{
+		if(n[i] >= '0' && n[i] <= '9') cout << check[n[i] - '0'];
+		else cout << check[n[i] - 'a' + 10];
+	}
+	return 0;
+}
+*/
+
+//bai tap: chuyển từ hệ nhị phân sang hệ thập lục phân.
+int main(){
+	//int kh có các số ABCDEF đâu.
+	string n; cin >> n;  
+	string check[16];
+	check[0] ="0000";
+	check[1] ="0001";
+	check[2] ="0010";
+	check[3] ="0011";
+	check[4] ="0100";
+	check[5] ="0101";
+	check[6] ="0110";
+	check[7] ="0111";
+	check[8] ="1000";
+	check[9] ="1001";
+	check[10] ="1010";
+	check[11] ="1011";
+	check[12] ="1100";
+	check[13] ="1101";
+	check[14] ="1110";
+	check[15] ="1111";
+	// nếu chia hết cho 4 thì ta không cần phải thêm con số 0 nào, còn nêu kh chia hết cho 4 thì phải thêm 0 vào.
+	// 4 số ở hệ nhị phân thành 1 số ở hệ thập lục phân. 
+	while(n.length() % 4 != 0){
+		//thêm sô 0 ở đầu cua n.
+		n = "0" + n;
+	}
+	for(int i = 0; i < n.length(); i = i + 4){
+		string tem ="";
+		tem += n[i];
+		tem += n[i + 1];
+		tem += n[i + 2];
+		tem += n[i + 3];
+		for(int j = 0; j <= 15; j++){
+			if(tem == check[j]){
+			if(j < 10) cout <<j;
+			else cout <<(char)('a' + j - 10);
+			}
+		}
 	}
 	return 0;
 }
