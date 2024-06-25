@@ -16,7 +16,7 @@ vidu: n = 3.
 
 - cau hinh xay dung dau tien: lúc nào cung nbit = 0
 - cau hinh cuoi cung: nbit = 1
-- phuong pháp sinh: la cong 2 so nhi phan lai voi nhau: 0001110 + 1 = 
+- phuong pháp sinh: la cong 2 so nhi phan lai voi nhau: 0001110 + 1 = 0001111.
 
 buoc 1:
 <ktao cau hinh dau tien>
