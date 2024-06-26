@@ -24,25 +24,33 @@ BUOC2: lap lai mang voi con tro phai de them cac phan tu vao cua so.
 buoc3: trong vong lap, neu dieu kien bi pha vo, ta tang con tro trai.
 rang buoc cua de bai: la tong cac phan tu cua cua so phai nho hon mot so k cho truoc nao do.
 */
-
+//thuật toán cuaso_truot in ra phân đoạn liên tục của mảng arr.
+/
 #include <bits/stdc++.h>
 
 using namespace std;
-/*
 // vi du bai toan tren.
-void cuaso_truot(vector<int>& arr){
-	int n = arr.size();
+int cuaso_truot(vector<int>& arr){
+	int n = arr.size(); //ví dụ: 4 6 8 4 2 
 	//loop de chon diem bat dau.
 	for(int i = 0; i < n; i++){
 		//loop(vong lap) de chon diem ket thuc.
 		for(int j = i; j < n; j++){
-			for( int k = i; k <= j; k++){
-				cout << arr[k] <<" ";
-			}
-			cout << endl;
+			/*
+			Kiểm tra j < n (tức là 2 < 5, đúng)
+			Thực hiện các câu lệnh trong vòng lặp
+			Tăng j lên 3 (j++), tức là tăng j lên 1 đơn vị.
+			i vẫn là 2
+			j < n: tương tự với việc j chạy từ i tới n: 
+			*/
+		for(int k = i; k <= j; k++){
+			cout << arr[k] <<" ";
+		}
+		cout << endl;
 		}
 	}
 }
+//giải thích chi tiết đoạn code trên:
 
 int main(){
 	int n; cin >> n;
@@ -54,6 +62,7 @@ int main(){
 	return 0;
 }
 */
+
 /*
 cho mang mot so nguyen duong nums va mot so nguyen k.
 
@@ -66,7 +75,6 @@ vd: k = 10
 - do phuc tap cua ki thuat nay dung o muc tuyen tinh.
 */
 
-/*
 int cuaso_truot(vector<int>& arr, int k) {
     int n = arr.size();
     int l = 0;
@@ -95,7 +103,6 @@ int main(){
     cout << result <<' ';
     return 0;
 }
-*/
 
 /*
 cho mot chuoi nhi phan s.
@@ -275,4 +282,77 @@ int main(){
 }
 */
 
-	
+//viết ra một mảng số nguyên n, tính tổng 2 số từ 1 tới n để tổng 2 số đó chia hết cho 3.
+
+//sử dụng cửa sổ trượt để giải.
+
+/*
+int cuaso_codinh(vector<int>& arr){
+	int n = arr.size();
+	int sum = 0;
+	for(int i = 0; i < n; i++){
+		for(int j = i + 1; j < n; j++){
+			sum = arr[i] + arr[j];
+		}
+	}
+	cout << sum;
+}
+
+int main(){
+	int n; cin >> n;
+	vector<int> arr(n);
+	for(int i = 0; i < n; i++){
+		cin >> arr[i];
+	}
+	int result = cuaso_codinh(arr);
+	cout << result <<' ';
+	return 0;
+}
+*/
+
+/*
+int cuaso_codinh(vector<int>& arr){
+	int n = arr.size();
+	int cnt = 0;
+	int sum = 0;
+    for(int i = 0; i < n; i++){ //khi i = 0 thì j chạy từ 1 đến 3, khi i = 1 j chạy từ 2 đến 3.
+        for(int j < n; j++){
+			sum = arr[i] + j = i + 1; arr[j];
+			if(sum % 3 == 0){
+				cnt++;
+			}
+        }
+    }
+	return cnt;
+}
+int main() {
+    int n;
+	cin >> n;
+	vector<int>arr(n);
+	for(int &x : arr) cin >> x;
+	int result = cuaso_codinh(arr);
+	cout << result <<" ";
+    return 0;
+}
+
+*/
+
+/*
+int cuaso_truot(vector<int>& arr, int k){
+	int n = arr.size();
+	int sum = 0;
+	for(int i = 0; i < k; i++){
+		sum += arr[i];
+	}
+	int ans = sum;
+	for(int i = k; i < arr.size(); i++){
+		sum += arr[i] - arr[i - k];
+		ans = max(ans, sum);
+	}
+	return ans;
+}
+
+int main(){
+	int n 
+}
+*/
