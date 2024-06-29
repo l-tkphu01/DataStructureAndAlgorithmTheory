@@ -122,8 +122,9 @@ int main(){
 */
 
 //liệt kê tổ hợp chập k của N: Xây dựng cấu hình (X1, X2,..., Xk)
-
-int N, X[100], used[100];
+//int N, X[100], used[100];
+int N, X[100], cot[100], d1[100], d2[100], a[100][100];
+int cnt = 0;
 /*
 void inkq(){
     for(int i = 1; i <= K; i++){
@@ -189,7 +190,7 @@ void Try(int i){
 */
 
 //code: 
-
+/*
 void inkq(){
     for(int i = 1; i <= N; i++){
         cout << X[i];
@@ -221,6 +222,7 @@ int main(){
     Try(1);
 }
 
+*/
 /*thuật toán N quân hậu (cổ điển nhất).
 -lí thuyết: tìm cách sắp xếp N quân hậu vào N hàng trên bàn cờ vua N*N sao cho không có 2 quân hậu nào ăn nhau. Gọi
 x = (x1, x2,...xn) là một nghiệm của bài toán, khi đó nếu xi(phần tử thứ i của cấu hình X)= j thì có nghĩa ta xếp quân hậu hàng thứ i nằm ở cột j.
@@ -239,15 +241,15 @@ mà chỉ cần check xem cột có quân hậu nào trùng nhau hay không ho�
 có 15 đường chéo ngược và 15 đường chéo xuôi.
 
 - khi đặt quân hậu X[i] = j tức là đặt quân hậu ở (i(hàng), j(cột)).
-
+- bàn cờ N*N = 8*8.
 - (i, j) => quản lí cột j, đường chéo xuôi (i-j+N) và đường chéo ngược (i + j - 1).
 */
 
 //mã giả của thuật toán là: 
-
+ 
 /*
 quay lui bài toán N queen: sử dụng giống như thuật toán "sinh hoán vị n".
-sử dụng mảng cot[], d1[], d2[] (tương tự như kĩ thuật loang trên 2 mảng để giải quyết). để đánh dấu cột, đường chéo xuôi
+sử dụng mảng cot[], d1[](đường chéo xuôi), d2[](đường chéo ngược). (tương tự như kĩ thuật loang trên 2 mảng để giải quyết). để đánh dấu cột, đường chéo xuôi
 và đường chéo ngược.
 
 //code mã giả của thuật toán sau.
@@ -260,21 +262,77 @@ void inkq(){
     cout << endl;
 }
 
+X[i] = j: nếu thỏa mãn cả 3 điều kiện là cot[j], d1[i - j + N], d2[i + j - 1] chưa bị quân hậu nào chiếm hết thì mới 
+thêm X[i] = j; được.
+
 void Try(int i){
     for(int j = 1; j <= N; j++){
-        if(cot[j] == 1 && d1[j] == 1 && d2[j] == 1){
-                cot[j] = d1[j] = d2[j] = 0;
-                X[i] = j;
+        if(cot[j] == 1 && d1[i - j + N] == 1 && d2[i + j - 1] == 1){
+
+        //sau khi đã gán quân hậu vào hàng thứ i và cột j thì đánh dấu 3 giá trị ở dưới.
+                cot[j] = d1[i - j + N] = d2[i + j - 1] = 0; //để đánh dấu con hậu đã quản kí hết các cột đó r.
+                X[i] = j; // sau khi đã cho quân hậu hàng thứ i nằm ở cột j ròi thì bịt 3 giá trị đó lại.
                 if(i == N){
                     inkq();
                 }
                 else{
                         Try(i + 1)
                 }
-                //backtrach: quay lại.
-                cot[j] = d1[j] = d2[j] = 0;
+                //backtrack: quay lại.
+                cot[j] = d1[j] = d2[j] = 1; //sau khi thử các trường hợp khác mà i kh nằm thứ j nữa thì trả lại cái trường
+                hợp ban đầu quản lí này. 
         }
     }
 }
 */
+
+void inkq(){
+    memset(a, 0, sizeof(a));
+    for(int i = 1; i <= N; i++){
+        a[i][X[i]] = 1;
+    }
+    for(int i = 1; i <= N; i++){
+        for(int j = 1; j <= N; j++){
+            cout << a[i][j];
+        }
+        cout <<endl;
+    }
+    cout << endl;
+}
+
+void Try(int i){
+    //duyet cac kha nang ma X[i] có thể nhận được.
+    for(int j = 1; j <= N; j++){
+        //chuẩn bị gán X[i] == j; 
+        if(cot[j] == 1 && d1[i - j + N] == 1 && d2[i + j - 1] == 1){ // nếu 3 thk này chưa bị quân hậu nào chiếm thì kh bị con khác ăn.
+            X[i] = j;
+            cot[j] = d1[i - j + N] = d2[i + j - 1] = 0; //để khi xây dựng đến Try(i + 1) tiếp theo thì cột cả 3 cột bị quản lí hết r kh đặc vào nữa thì đảm bảo là kh bị ăn.
+            if(i == N){
+                inkq();
+                ++cnt;
+            }
+            else{
+                Try(i + 1);
+            }
+            //backtrack;
+            cot[j] = d1[i - j + N] = d2[i + j - 1] = 1; //trả lại để nhánh quay lui tiếp theo sử dụng lại các cột.
+        }
+    }
+}
+
+int main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr); //sử dụng nullptr để biểu diễn con trỏ một cách an toàn và an toàn hơn
+                      //việc sử dụng 'nullptr' làm cho mã nguồn dễ hiểu và tránh nhầm lẫn với số nguyên 0. đây là cách viết mới và hiên đại trong c++ hơn.
+    cin >> N;
+    for(int i = 1; i <= 99; i++){
+        cot[i] = d1[i] = d2[i] = 1; //khởi tạo bằng 1 hết.
+    }
+    Try(1);
+    cout << cnt <<" ";
+    return 0;
+}
+
+
 
