@@ -15,6 +15,17 @@ thử cho x1 nhận lần lượt các giá trị có thể. với mỗi giá tr
 sinh ra nhiều cấu hình: ở mỗi bước vd x1 xét 3 th, x2 xét 3 trường hợp, x3 xét 3 trường hợp.
 ở mỗi bước sẽ có 3 x 3 x 3 = 27th tất cả.
 
+DẤU HIỆU NHẬN BIẾT THUẬT TOÁN QUAY LUI.
++ bài toán được chia thành các bước nhỏ hơn.
+- bài toán lớn được giải quyết bằng cách giải quyết bằng các bài toán nhỏ hơn.
+- mỗi bước có một lựa chọn khả thi, và các lựa chọn này có thể thử 1 lần. (đối với những bài toán sinh xâu nhị phân,
+sinh tổ hợp chập k của N kh có điều kiện để thử.)
++ cấu trúc cây quyết định:
+- các lựa chọn có thể biểu diễn dưới dạng một cây, nơi mỗi nút đại diện là các Try(i + 1) khác nhau 
+
++ có thể kiểm tra điều kiện tại mỗi bước:
+- có một phương pháp để kiểm tra liệu 1 lựa chọn có hợp lệ hay không trước khi tiếp tục.
+- nếu điều kiện đó kh đúng,(backtrack) và thử Try khác. 
 */
 //thuật toán mã giả.
 //- cấu hình xây dựng mã giả thuật toán quay lui:
