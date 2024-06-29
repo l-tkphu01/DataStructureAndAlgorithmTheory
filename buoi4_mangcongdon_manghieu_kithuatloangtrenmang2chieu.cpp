@@ -421,3 +421,30 @@ int main(){
 đường chéo.
 - các ô được gọi là cùng miền, nếu mà chúng nó chung cạnh với nhau.
 */
+
+//mảng đánh dấu:
+/*
+#include <bits/stdc++.h>
+
+int mark[1000001];
+
+int main(){
+    int n; cin >> n
+    int a[n];
+    for(int &x : a) cin >> x;
+    //đánh dấu.
+    for(int i = 0; i < n; i++){
+        //lấy a[i] làm chỉ số và chuyển mark[a[i]] = 1
+        mark[a[i]] = 1;
+    }
+    int dem = 0;
+    // bạn có thể duyệt từ i = 0 tới giá trị max trong mảng cx đc
+    for(int i = 0; i <= 1000000; i++){
+        if(mark[i] == 1){
+            ++dem;
+        }
+    }
+    cout << "so luong phan tu khac nhau: " << dem << endl;
+    return 0;
+}
+*/
