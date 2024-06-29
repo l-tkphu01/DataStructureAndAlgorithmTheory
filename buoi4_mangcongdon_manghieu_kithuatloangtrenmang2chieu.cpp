@@ -422,7 +422,7 @@ int main(){
 - các ô được gọi là cùng miền, nếu mà chúng nó chung cạnh với nhau.
 */
 
-//mảng đánh dấu:
+//KĨ THUẬT MẢNG ĐÁNH DẤU (LÙA BÒ VÀO CHUỒNG).
 /*
 #include <bits/stdc++.h>
 
@@ -448,3 +448,90 @@ int main(){
     return 0;
 }
 */
+
+//bài toán liệt kê các giá trị khác nhau: 
+/*
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int mark[1000001]; 
+
+int main(){
+    int n = 10;
+    int a[10] = {3, 1, 3, 0, 2, 4, 1, 14, 12, 7};
+    //đánh dấu
+    int max_val = -1000000000;
+    for(int i = 0; i < n; i++){
+        //Lấy a[i] làm chỉ số và chuyển mark[a[i]] = 11
+        mark[a[i]] = 1;
+        if(a[i] > max_val){
+            max_val = a[i];
+        }
+    }
+    cout << "Cac gia tri khac nhau trong mang : ";
+    for(int i = 0; i <= max_val; i++){
+        if(mark[i] == 1){
+            cout << i << " ";
+        }
+    }
+    return 0;
+}
+*/
+
+//Cho mảng A[] gồm N phần tử là số nguyên trong đoạn [0, 106], hãy liệt kê các giá trị khác nhau trong mảng theo thứ tự xuất hiện trong mảng
+//, mỗi giá trị chỉ liệt kê 1 lần
+/*#include <iostream>
+#include <math.h>
+using namespace std;
+
+int mark[1000001]; 
+
+int main(){
+    int n = 10;
+    int a[10] = {3, 1, 3, 0, 2, 4, 1, 14, 12, 7};
+    //đánh dấu
+    for(int i = 0; i < n; i++){
+        //Lấy a[i] làm chỉ số và chuyển mark[a[i]] = 11
+        mark[a[i]] = 1;
+    }
+    cout << "Gia tri khac nhau trong mang : ";
+    for(int i = 0; i < n; i++){
+        if(mark[a[i]] == 1){
+            cout << a[i] << " ";
+            //Bỏ đánh dấu
+            mark[a[i]] = 0;
+        }
+    }
+    return 0;
+}
+*/
+
+//bài toán tần suât:
+/*#include <iostream>
+#include <math.h>
+using namespace std;
+
+int mark[1000001]; 
+
+int main(){
+    int n = 10;
+    int a[10] = {3, 1, 3, 0, 2, 4, 1, 14, 3, 2};
+    //đếm tần suất
+    int max_val = -1000000000;
+    for(int i = 0; i < n; i++){
+        //Lấy a[i] làm chỉ số và chuyển mark[a[i]] tăng thêm 1 đơn vị
+        mark[a[i]]++;
+        if(a[i] > max_val){
+            max_val = a[i];
+        }
+    }
+    for(int i = 0; i <= max_val; i++){
+        if(mark[i]){
+            cout << i << " xuat hien " << mark[i] << " lan\n";
+        }
+    }
+    return 0;
+}
+*/
+
