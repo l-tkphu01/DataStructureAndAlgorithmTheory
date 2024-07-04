@@ -27,4 +27,29 @@ phố thứ i với chính nó là 0.
 một người đi du lịch xuất phát từ thành phố 1, muốn đi thăm tất cả các thành phố còn lại mỗi thành phố đúng 1 lần và cuối 
 cùng quay lại thành phố 1. hãy chỉ ra chi phí ít nhất mà người đó phải bỏ ra.
 */
+//thuật toán nhánh và cận (brand and bound).
 
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/*
+void branch_and_bound(int i)
+{
+    // Đánh giá các nghiệm mở rộng
+    if ({Các_nghiệm_mở_rộng_đều_không_tốt_hơn_best_solution})
+        return;
+	
+    for (value in S[i]) //những giá trị có thể gán cho phần tử x[i] = value;
+    {
+        x[i] = value; // Ghi nhận thành phần thứ i.
+		
+        if ({Tìm_thấy_nghiệm})
+            best_solution = X; // Cập nhật lại best_solution bằng nghiệm vừa tìm được.
+        else 
+            branch_and_bound(i + 1); // Chưa tìm thấy nghiệm thì xây dựng tiếp.
+		
+        {Loại_bỏ_thành_phần_thứ_i}
+    }
+}
+*/
