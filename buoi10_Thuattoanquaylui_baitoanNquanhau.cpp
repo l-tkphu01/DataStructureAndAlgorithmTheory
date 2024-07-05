@@ -346,4 +346,17 @@ int main(){
 }
 
 
+/*
+một cách hiểu khác của thuật toán quay lui.
+*/
+
+/*
+void backtracking(i){
+    if( i > n){
+        if(<nghiem thoa man>) {
+            print(x);
+        }
+        return;
+    }
+}
 
