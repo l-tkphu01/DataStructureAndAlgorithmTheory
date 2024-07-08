@@ -358,5 +358,13 @@ void backtracking(i){
         }
         return;
     }
+    for(j in D){
+        if (check(i, j)){
+            x[i] = j;
+            backtrack(i + 1);
+            x[i] = j; //xóa j ra khỏi x[i].
+        }
+    }
 }
+*/
 
