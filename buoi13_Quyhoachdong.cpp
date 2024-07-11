@@ -233,6 +233,30 @@ int main(){
 }
 */
 
+// SỬ DỤNG VÒNG LẶP FOR NÂNG CAO.
 
+/*
+2. Bài toán đường đi có tổng lớn nhất:
+
+link đề bài: Đường đi có tổng lớn nhất.
+
+Cho một bảng A kích thước m*n (1≤m,n≤100), trên đó ghi các số nguyên aij (∣aij∣≤100). Một người xuất phát tại ô nào đó của
+cột 1, cần sang cột n (tại ô nào cũng được).
+Quy tắc di chuyển: Từ ô (i,j) chỉ được quyền sang một trong 3 ô (i,j+1); (i−1,j+1); (i+1,j+1).
+
+input: Ghi 2 số m, n là số hàng và số cột của bảng.
+
+M dòng tiếp theo, dòng thứ i ghi đủ n số trên hàng i của bảng theo đúng thứ tự từ trái sang phải.
+
+- các bước giải bài toán:
+B1: Xác định ý nghĩa của mảng F.
+'.) Gọi F[i][j] là tổng đường đi lớn nhất khi đi từ ô nào đó thuộc cột 1 đến ô (i,j)
+Kích thước mảng F là m∗n, mảng F có 2 chiều, tương ứng hàng và cột.
+ .) Kích thước mảng F là m∗n, mảng F có 2 chiều, tương ứng hàng và cột.
+
+B2: xác định bài toán con.
+ .)Ta thấy một ô (i,j) bất kỳ sẽ được đi tới bởi các ô: (i−1,j−1),(i,j−1),(i+1,j−1)
+ .)
+*/
 
 

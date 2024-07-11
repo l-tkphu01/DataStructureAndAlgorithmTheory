@@ -1,4 +1,8 @@
 quy hoạch động (dynamic program).
+
+dấu hiệu:
+cho bảng.
+
 Bước 1: Xác định ý nghĩa mảng F
 
 * Bước này giống hệt như hồi cấp 2 học giải bài toán có lời văn, đề bài hỏi cái gì thì mình đặt ẩn cái đó.
@@ -38,3 +42,5 @@ trong đó:
 => vd: bài toán con ếch nhảy (Frog1);
 .) mất O(3) phép tính để giải: 
 .) độ phức tạp là: O(n)*O(3) = O(n);
+
+
