@@ -109,6 +109,7 @@ nhận thấy: xác định cách để chú ếch nhảy từ hòn đá 1 đế
 ==> đây là bài toán tối ưu, ta dùng cách quy hoạch động.
 */
 
+/*
 #include <iostream>
 #include <cmath>  // Thêm thư viện cho hàm abs và min
 #include <algorithm> // Thêm thư viện cho hàm min
@@ -140,5 +141,78 @@ int main() {
     int result = f(n); // Gọi hàm f với n - 1 vì chỉ số mảng bắt đầu từ 0
     cout << result << endl;
 
+    return 0;
+}
+*/
+// Bài toán xếp hàng mua vé.
+
+/*
+Có N người sắp hàng mua vé dự buổi hoà nhạc. Ta đánh số họ từ đến 
+theo thứ tự đứng trong hàng. Mỗi người cần mua một vé, song người bán vé được phép bán cho mỗi người tối đa hai vé. Vì thế, một số người có thể rời hàng và nhờ người đứng trước mình mua hộ vé. Biết 
+là thời gian cần thiết để người 
+mua xong vé cho mình. Nếu người 
+rời khỏi hàng và nhờ người 
+mua hộ vé thì thời gian để người thứ 
+mua được vé cho cả hai người là 
+
+Yêu cầu: Xác định xem những người nào cần rời khỏi hàng và nhờ người đứng trước mua hộ vé để tổng thời gian phục vụ bán vé là nhỏ nhất.
+
+theo quan sát thì nó có dạng là quy hoạch động:
+để vé mua là rẻ nhất có nghĩa là tối ưu nhất ==> quy hoạch động, nhánh cận, quay lui.
+*/
+
+/*
+Xác định các bước giải bài toán (làm ra nháp)
+Bước 1: Xác định ý nghĩa mảng F
+
+Gọi F[i] là thời gian nhỏ nhất để người thứ 1 đến người thứ i có thể mua vé
+Kích thước mảng F là n, mảng F có 1 chiều.
+Bước 2: Xác định bài toán con
+
+Nếu chỉ có 1 người mua vé thì thời gian để người đó mua là T[1], F[1]=T[1]
+Nếu chỉ có 2 người mua vé thì mình sẽ có 2 cách mua:
+Cách 1: 2 người tự mua vé mất số thời gian là T[1]+T[2]
+Cách 2: người 1 mua vé cho cả hai người 1 và 2, mất thời gian là R[1]
+Vì ta đang cần tìm thời gian nhỏ nhất nên sẽ chọn cách nào cho ra kết quả nhỏ nhất: F[2]=min(T[1]+T[2],R[1])
+Bước 3: Xác định công thức truy hồi
+Xác định được bài toán con thì đến đây có thể dễ dàng tìm được công thức. Các cách để người thứ i mua vé:
+
+Nếu người i tự mua vé của mình ta sẽ mất thời gian là: F[i−1]+T[i]
+Nếu người i nhờ người i−1 mua vé hộ, ta sẽ mất thời gian là: F[i−2]+R[i−1]
+Vậy ta có công thức: F[i]=min(F[i−1]+T[i],F[i−2]+R[i−1])
+
+Bước 4: Xác định kết quả nằm ở đâu?
+Kết quả nằm ở: F[n] – Thời gian mua vé cho người từ 1 tới n
+*/
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+
+int F[100] = {0};
+int T[100] = {0};
+int R[100] = {0};
+int f(int n){
+    F[1] = T[1];
+    F[2] = min(T[1] + T[2], R[1]);//trường hợp 2 người mua 2 vé riêng lẻ.
+    //b3: xác định công thức truy hồi.
+    for(int i = 3; i <= n; i++){
+        F[i] = min(F[i - 1] + T[i], F[i - 2] + R[i - 1]); 
+    }
+    return F[n];
+}
+
+int main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie();
+    int n; cin >> n;
+    for(int i = 1; i <= n; i++){
+        cin >> T[i];
+    }
+    for(int i = 1; i < n; i++){
+        cin >> R[i];
+    }
+    int result = f(n);
+    cout << result <<endl;
     return 0;
 }

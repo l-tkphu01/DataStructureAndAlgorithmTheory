@@ -15,3 +15,6 @@ F[2]=abs(h[2]−h[1])  (Nếu chỉ có hai hòn đá thì chú ếch chỉ có 
 
 Bước 3: Xác định công thức truy hồi.
 
+
+*lưu ý: khi giải thuật toán quy hoạch động kh cần khai báo biến lại trong hàm main.
+
