@@ -18,3 +18,23 @@ Bước 3: Xác định công thức truy hồi.
 
 *lưu ý: khi giải thuật toán quy hoạch động kh cần khai báo biến lại trong hàm main.
 
+Học kĩ phần cách lập hệ truy hồi của bài toán.
+
++ TỔNG KẾT:
+- Các bài toán giải quyết bằng Quy hoạch động sử dụng vòng lặp for với cách tiếp cận Bottom-up, thứ tự thực hiện tính toán
+các bài toán sẽ là: Tính trước các bài toán con, rồi sau đó sử dụng kết quả của những bài toán này để tính lên cho các
+bài toán lớn hơn. Vậy mỗi bài toán sẽ được tính duy nhất 1 lần.
++ ĐỘ PHỨC TẠP CỦA THUẬT TOÁN QUY HOẠCH ĐỘNG ĐƯỢC TÍNH BẰNG CÔNG THỨC.
+
+- số bài toán*chi phí chuyển trạng thái.
+
+trong đó:
+. số bài toán: là số phần tử trong mảng F.
+. chi phí chuyển trạng thái: độ phức tạp khi triển khai công thức tính mỗi bài toán. (phụ thuộc cách tính những bài toán con)
+
+=> vd: bài toán fibonacci: có n bài toán con cần phải giải (từ F(0) đến F(n)).
+.) mỗi bài toán con mất O(1) phép tính để tính F[n] = F[n - 1] + F[n - 2]
+.) tổng độ phức tạp là:    O(n)*O(1) = O(n)
+=> vd: bài toán con ếch nhảy (Frog1);
+.) mất O(3) phép tính để giải: 
+.) độ phức tạp là: O(n)*O(3) = O(n);

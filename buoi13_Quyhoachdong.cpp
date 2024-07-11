@@ -48,6 +48,19 @@ lại nhiều lần.
 */
 
 
+/*
+code tham khảo cho thuật toán quy hoạch động.
+
+int F[100];
+int fibon(int n){
+    F[1] = 1;
+    F[2] = 1;
+    for(int i = 3; i <= n; i++){
+        F[i] = F[i - 1] + F[i - 2]; //lưu ý: khi truy hồi thì luôn có 2 vế này.
+    }
+    return F[n];
+}
+*/
 // phương pháp này là bottom-up.
 #include <bits/stdc++.h>
 
@@ -184,6 +197,8 @@ Vậy ta có công thức: F[i]=min(F[i−1]+T[i],F[i−2]+R[i−1])
 Bước 4: Xác định kết quả nằm ở đâu?
 Kết quả nằm ở: F[n] – Thời gian mua vé cho người từ 1 tới n
 */
+
+/*
 #include <iostream>
 #include <cmath>
 #include <algorithm>
@@ -216,3 +231,8 @@ int main(){
     cout << result <<endl;
     return 0;
 }
+*/
+
+
+
+
