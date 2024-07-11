@@ -1,0 +1,17 @@
+quy hoạch động (dynamic program).
+Bước 1: Xác định ý nghĩa mảng F
+
+* Bước này giống hệt như hồi cấp 2 học giải bài toán có lời văn, đề bài hỏi cái gì thì mình đặt ẩn cái đó.
+
+//một bài toán nếu muốn giải bài khó thì phải đi từ bài dễ sau đó đệ quy thì ra bài khó thì mới đúng.
+
+- Gọi F[i] là chi phí nhỏ nhất để chú ếch nhảy từ hòn đá 1 đến hòn đá i
+- Kích thước mảng F là n, mảng F có 1 chiều.
+
+Bước 2: Xác định bài toán con
+
+F[1]=0  (Ban đầu chú ếch đang đứng tại hòn đá 1 nên ta không mất chi phí nào để nhảy từ hòn đá 1 đến hòn đá 1 nữa)
+F[2]=abs(h[2]−h[1])  (Nếu chỉ có hai hòn đá thì chú ếch chỉ có duy nhất 1 cách là nhảy trực tiếp từ hòn đá 1 đến hòn đá 2).
+
+Bước 3: Xác định công thức truy hồi.
+

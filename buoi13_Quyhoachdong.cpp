@@ -74,6 +74,7 @@ signed main(){
 */
 // cách code thứ 2.
 
+/*
 int F[100] = {0};
 int fibon(int n){
     F[1] = 1;
@@ -88,5 +89,56 @@ signed main(){
     unsigned long long n; cin >> n;
     unsigned long long result = fibon(n);
     cout << result << endl;
+    return 0;
+}
+
+*/
+/*
+4. Bài toán Frog 1 VNOJ.
+có N hòn đá, được đánh số từ 1 --> N. Với mỗi chỉ số i (1 <= i <= N), độ cao của hoàn đá thứ i là hi
+
+ban đầu, có một chú ếch đang ngồi ở hòn đá thứ nhất và chú sẽ thực hiện liên tục một loạt cách hành động:
+
+.) Nếu chú đang ngồi ở hòn đá i, chú có thể nhảy đến hòn đá thứ i + 1 hoặc i + 2. Chú sẽ mất chi phí khi nhảy là |hi - hj|
+với j là hòn đá mà chú ếch nhảy đến.
+
+bạn hãy giúp chú ếch tìm chi phí tối thiểu để nhảy từ hòn đá thứ nhất đến hòn đá thứ N nhé.
+
+nhận thấy: xác định cách để chú ếch nhảy từ hòn đá 1 đến hòn đá n sao cho chi phí là nhỏ nhất.
+
+==> đây là bài toán tối ưu, ta dùng cách quy hoạch động.
+*/
+
+#include <iostream>
+#include <cmath>  // Thêm thư viện cho hàm abs và min
+#include <algorithm> // Thêm thư viện cho hàm min
+using namespace std;
+
+int F[100] = {0};
+int h[100] = {0};
+
+int f(int n) {
+    F[1] = 0; // Chi phí để ở hòn đá đầu tiên là 0
+    F[2] = abs(h[2] - h[1]); // Chi phí để nhảy từ hòn đá 0 đến hòn đá 1
+    for (int i = 3; i <= n; i++) {
+        F[i] = min(F[i - 1] + abs(h[i] - h[i - 1]), F[i - 2] + abs(h[i] - h[i - 2]));
+    }
+    return F[n];
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+        cin >> h[i];
+    }
+
+    int result = f(n); // Gọi hàm f với n - 1 vì chỉ số mảng bắt đầu từ 0
+    cout << result << endl;
+
     return 0;
 }
